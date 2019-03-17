@@ -2,6 +2,8 @@
 using Mvc_Svc_Repo_Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Mvc_Svc_Repo_Svc
 {
