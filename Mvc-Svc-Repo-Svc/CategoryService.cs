@@ -2,8 +2,6 @@
 using Mvc_Svc_Repo_Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace Mvc_Svc_Repo_Svc
 {
@@ -19,6 +17,16 @@ namespace Mvc_Svc_Repo_Svc
         public async Task<IList<Categories>> GetCategoriesAsync()
         {
            return await _repo.GetAll();
+        }
+
+        public async Task<IList<Categories>> GetCategoriesIncludeAsync()
+        {
+            return await _repo.GetAll(x => x.Products);
+        }
+
+        public async Task<Categories> GetCategoryByIdAsync(int id)
+        {
+            return await _repo.GetById(id);
         }
     }
 } 

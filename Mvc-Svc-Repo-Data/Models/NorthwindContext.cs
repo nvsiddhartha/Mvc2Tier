@@ -13,6 +13,7 @@ namespace Mvc_Svc_Repo_Data.Models
         public NorthwindContext(DbContextOptions<NorthwindContext> options)
             : base(options)
         {
+            
         }
 
         public virtual DbSet<Categories> Categories { get; set; }
@@ -33,7 +34,6 @@ namespace Mvc_Svc_Repo_Data.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
             }
         }
 

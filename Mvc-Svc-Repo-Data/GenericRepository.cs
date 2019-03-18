@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Mvc_Svc_Repo_Data
@@ -18,16 +17,21 @@ namespace Mvc_Svc_Repo_Data
             Context = ctx;
         }
 
-        public async Task<IList<TEntity>> GetAll()
+        public async Task<IList<TEntity>> GetAll(params Expression<Func<TEntity, object>>[] includes)
         {
-            return await Context.Set<TEntity>().ToListAsync();
-        }
+            IQueryable<TEntity> query = Context.Set<TEntity>();
 
-        public async Task<TEntity> GetById(int id)
-        {
-            return await Context.Set<TEntity>().FirstOrDefaultAsync();
-        }
+            if (includes != null)
+            {
+                foreach (Expression<Func<TEntity, object>> include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
 
+            return await query.ToListAsync();
+        }
+        
         public async Task<IList<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> expression)
         {
             return await Context.Set<TEntity>().Where(expression).ToListAsync();

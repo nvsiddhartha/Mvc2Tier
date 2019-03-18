@@ -5,6 +5,6 @@ namespace Mvc_Svc_Repo_Data
 {
     public interface ICategoryRepository : IGenericRepository<Categories>
     {
-        new Task<Categories> GetById(int id);
+        Task<Categories> GetById(int id);
     }
 }

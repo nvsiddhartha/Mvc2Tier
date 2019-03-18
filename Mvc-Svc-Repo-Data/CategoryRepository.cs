@@ -8,9 +8,11 @@ namespace Mvc_Svc_Repo_Data
     {
         public CategoryRepository(NorthwindContext ctx) : base(ctx) { }
 
-        public new async Task<Categories> GetById(int id)
+        public async Task<Categories> GetById(int id)
         {
-            return await Context.Categories.FirstOrDefaultAsync(i => i.CategoryId == id);
+            return await Context.Categories
+                .Include(i => i.Products)
+                .FirstOrDefaultAsync(i => i.CategoryId == id);
         }
     }
 }

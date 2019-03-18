@@ -7,9 +7,7 @@ namespace Mvc_Svc_Repo_Data
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        Task<IList<TEntity>> GetAll();
-
-        Task<TEntity> GetById(int id);
+        Task<IList<TEntity>> GetAll(params Expression<Func<TEntity, object>>[] includes);
 
         Task<IList<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> expression);
     }

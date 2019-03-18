@@ -19,6 +19,8 @@ namespace Mvc_Svc_Repo_UI.Controllers
         {
             ViewBag.Categories = await CategorySvc.GetCategoriesAsync();
 
+            ViewBag.Categories2 = await CategorySvc.GetCategoriesIncludeAsync();
+
             return View();
         }
 
